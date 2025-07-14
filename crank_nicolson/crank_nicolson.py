@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.sparse import diags, identity, kron
-from scipy.sparse.linalg import spsolve
+from scipy.sparse.linalg import factorized
+import time
 
 def laplacian_matrix(N, dx):
     """ 
@@ -30,8 +31,8 @@ def crank_nicolson(u, v, Du, Dv, f, g, dt, dx, steps, p):
     """
     N = u.shape[0]
     I = identity(N)
-    L1D = laplacian_matrix(N, dx) # 1D Laplacian with periodic boundary conditions
-    L2D = kron(I, L1D) + kron(L1D, I) # Construct 2D Laplacian using Kronecker products
+    L1D = laplacian_matrix(N, dx)
+    L2D = kron(I, L1D) + kron(L1D, I)
 
     A_u_lhs = identity(N*N) - 0.5 * dt * Du * L2D
     A_u_rhs = identity(N*N) + 0.5 * dt * Du * L2D
@@ -41,15 +42,23 @@ def crank_nicolson(u, v, Du, Dv, f, g, dt, dx, steps, p):
     u = u.flatten()
     v = v.flatten()
 
-    # main time-stepping loop
-    for _ in range(steps):
+    solver_u = factorized(A_u_lhs)
+    solver_v = factorized(A_v_lhs)
+    
+    start = time.time()
+
+    for step in range(steps):
         Fu = f(u, v, p)
         Gv = g(u, v, p)
 
         rhs_u = A_u_rhs @ u + dt * Fu
         rhs_v = A_v_rhs @ v + dt * Gv
 
-        u = spsolve(A_u_lhs, rhs_u)
-        v = spsolve(A_v_lhs, rhs_v)
+        #u = spsolve(A_u_lhs, rhs_u)
+        #v = spsolve(A_v_lhs, rhs_v)
+        u = solver_u(rhs_u)
+        v = solver_v(rhs_v)
+    
+    print(f"Total time for {steps} steps: {time.time() - start:.2f} s")
 
     return u.reshape((N, N)), v.reshape((N, N))
