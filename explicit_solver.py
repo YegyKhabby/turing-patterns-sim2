@@ -1,14 +1,19 @@
 import numpy as np
 
-def laplacian(U, dx):
+def laplacian(Z, dx):
     """
     Second-order finite difference Laplacian (∇²U) on a 2D Cartesian grid.
     """
-    L = np.zeros_like(U)
+    """L = np.zeros_like(U)
     L[1:-1, 1:-1] = (
         U[2:, 1:-1] + U[:-2, 1:-1] + U[1:-1, 2:] + U[1:-1, :-2] - 4 * U[1:-1, 1:-1]
     ) / dx**2
-    return L
+    return L"""
+    return (
+        -4 * Z
+        + np.roll(Z, (1, 0), (0, 1)) + np.roll(Z, (-1, 0), (0, 1))
+        + np.roll(Z, (0, 1), (0, 1)) + np.roll(Z, (0, -1), (0, 1))
+    ) / dx**2
 
 def explicit_euler(u, v, f, g, D_u, D_v, dx, dt):
     """
