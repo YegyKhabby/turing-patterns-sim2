@@ -25,7 +25,5 @@ $$ \begin{aligned} f (u, v) &= −uv^2 + \alpha (1 − u) \\\\ g(u, v) &= uv^2 �
 [1] A. M. Turing, “The chemical basis of morphogenesis,” Philosophical Transactions of the Royal
 Society of London. Series B, Biological Sciences, vol. 237, no. 641, pp. 37–72, 1952.
 
-## Temp
-https://www.canva.com/design/DAGp93CReI4/HSTv9bQ_h46HqaAnBKni3A/edit?utm_content=DAGp93CReI4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
-
-with uni template https://www.canva.com/design/DAGp93yjrVA/YgR_wmOwD-Jna24BWWbEtA/edit?utm_content=DAGp93yjrVA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+## Presentation
+https://www.canva.com/design/DAGp93yjrVA/YgR_wmOwD-Jna24BWWbEtA/edit?utm_content=DAGp93yjrVA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
