@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from explicit_solver import explicit_euler
+from solvers.explicit_solver import explicit_euler
 
 class TestExplicitSolver(unittest.TestCase):
 

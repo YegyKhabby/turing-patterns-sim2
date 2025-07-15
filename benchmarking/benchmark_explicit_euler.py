@@ -2,7 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import time
-from explicit_solver import explicit_euler
+from solvers.explicit_solver import explicit_euler
 
 
 

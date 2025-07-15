@@ -1,9 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from gray_scott import gray_scott_f, gray_scott_g
-from crank_nicolson import crank_nicolson
-from initialize import initialize
+from solvers.crank_nicolson import crank_nicolson
+from models.gray_scott import gray_scott_f, gray_scott_g
+from models.initialize import initialize
 
 def run_simulation(N, dt, total_time, Du, Dv, params, pattern='random', size=10):
     dx = 1.0 / 143
